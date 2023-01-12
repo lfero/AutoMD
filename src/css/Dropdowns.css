@@ -1,0 +1,67 @@
+.welcome_text {
+    /*border: solid 1px red;*/
+    /*font-size: 60px;*/
+    color:white;
+    padding-left: 400px;
+    padding-top: 150px;
+    font-size: 30px;
+}
+
+
+.select_symptom_text {
+    padding-left: 400px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    font-size: x-large;
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.dropdowns_or_freetext_link {
+    padding-left: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: large;
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.free_text {
+    margin-left:400px;
+    width:50%;
+    height:100px;
+    font-size:30px
+}
+
+.dropdown_option{
+    padding-top: 20px;
+    padding-left: 400px;
+    font-size: larger;
+    max-width: 50%;
+}
+
+.comment_text{
+    color: red;
+    padding-left: 400px;
+    padding-top: 20px;
+}
+
+
+
+.diagnose_button {
+    margin-left: 1250px;
+    margin-top: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 150px;
+    font-size: medium;
+}
+
+.result_button {
+    margin-left: 30px;
+    margin-top: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 150px;
+    font-size: medium;
+}

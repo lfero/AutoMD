@@ -1,0 +1,17 @@
+﻿No,symbtom a,symptom b,symptom c,problem
+1,High engine temperature,Hot weather,low coolant level warning light is on,Lack of coolant
+2,High engine temperature,Hot weather,no low coolant level warning light is on,The cooling system is clogged - it needs to be cleaned
+3,High engine temperature,After a long drive,The air conditioner is on most of the time,check the ventilation unit
+4,High engine temperature,After a long drive,Air conditioner is off most of the time,The alternator belt may be slipping or the fan clutch may be damaged
+5,Car exhaust smoke,black smoke,The smoke comes out of the exhaust while driving,Check if the air filter is clean. If so then check the fuel injection sensor
+6,Car exhaust smoke,black smoke,The smoke comes out of the exhaust when starting and then stops,The engine sensor may be faulty
+7,Car exhaust smoke,white smoke,The smoke comes out of the exhaust while driving even after the engine has warmed up,A new head gasket may be needed
+8,Car exhaust smoke,white smoke,The smoke comes out of the exhaust while driving and stops after the engine has warmed up,This is a normal situation
+9,Car exhaust smoke,white smoke,cold weather,This is a normal situation
+10,Car exhaust smoke,white smoke,The smoke comes out during startup and then stops,The engine sensor may be damaged
+11,The car shakes,The whole car shakes,It happens while braking,Matching problem between the brake pads and the front discs
+12,The car shakes,The whole car shakes,It happens during acceleration,Check for a vacuum leak or moisture in the distributor cap (distributor)
+13,The car shakes,The whole car shakes,It happens while driving at a certain speed,Check the balance of the four wheels
+14,The car shakes,The brake pedal is shaking,The braking also has vibrations from the front,Matching problem between the brake pads and the front discs
+15,The car shakes,The brake pedal is shaking,It only happens under heavy braking and there is no vibration from the front end,This is a normal situation. The anti lock system pulsates the brakes
+16,The car shakes,The steering wheel shakes,It happens while braking,Matching problem between the brake pads and the front discs

@@ -1,0 +1,49 @@
+garage name,distance (meters),problem,price (shekels)
+Grease Monkey Mechanics,1300,Lack of coolant,4500
+Grease Monkey Mechanics,1300,The cooling system is clogged - it needs to be cleaned,4600
+Grease Monkey Mechanics,1300,check the ventilation unit,4200
+Grease Monkey Mechanics,1300,The alternator belt may be slipping or the fan clutch may be damaged,3700
+Grease Monkey Mechanics,1300,Check if the air filter is clean. If so then check the fuel injection sensor,3600
+Grease Monkey Mechanics,1300,The engine sensor may be faulty,3200
+Grease Monkey Mechanics,1300,A new head gasket may be needed,2300
+Grease Monkey Mechanics,1300,This is a normal situation,3900
+Grease Monkey Mechanics,1300,This is a normal situation,2900
+Grease Monkey Mechanics,1300,The engine sensor may be damaged,4500
+Grease Monkey Mechanics,1300,Matching problem between the brake pads and the front discs,2400
+Grease Monkey Mechanics,1300,Check for a vacuum leak or moisture in the distributor cap (distributor),3500
+Grease Monkey Mechanics,1300,Check the balance of the four wheels,4800
+Grease Monkey Mechanics,1300,Matching problem between the brake pads and the front discs,3900
+Grease Monkey Mechanics,1300,This is a normal situation. The anti lock system pulsates the brakes,2000
+Grease Monkey Mechanics,1300,Matching problem between the brake pads and the front discs,3400
+The Wrench Whisperers,4400,Lack of coolant,2300
+The Wrench Whisperers,4400,The cooling system is clogged - it needs to be cleaned,4500
+The Wrench Whisperers,4400,check the ventilation unit,4100
+The Wrench Whisperers,4400,The alternator belt may be slipping or the fan clutch may be damaged,3100
+The Wrench Whisperers,4400,Check if the air filter is clean. If so then check the fuel injection sensor,2400
+The Wrench Whisperers,4400,The engine sensor may be faulty,3600
+The Wrench Whisperers,4400,A new head gasket may be needed,4100
+The Wrench Whisperers,4400,This is a normal situation,4500
+The Wrench Whisperers,4400,This is a normal situation,2700
+The Wrench Whisperers,4400,The engine sensor may be damaged,4300
+The Wrench Whisperers,4400,Matching problem between the brake pads and the front discs,2900
+The Wrench Whisperers,4400,Check for a vacuum leak or moisture in the distributor cap (distributor),2200
+The Wrench Whisperers,4400,Check the balance of the four wheels,2500
+The Wrench Whisperers,4400,Matching problem between the brake pads and the front discs,3600
+The Wrench Whisperers,4400,This is a normal situation. The anti lock system pulsates the brakes,4200
+The Wrench Whisperers,4400,Matching problem between the brake pads and the front discs,3300
+Clutch & Cogs Garage,3500,Lack of coolant,3700
+Clutch & Cogs Garage,3500,The cooling system is clogged - it needs to be cleaned,2700
+Clutch & Cogs Garage,3500,check the ventilation unit,4700
+Clutch & Cogs Garage,3500,The alternator belt may be slipping or the fan clutch may be damaged,4800
+Clutch & Cogs Garage,3500,Check if the air filter is clean. If so then check the fuel injection sensor,2300
+Clutch & Cogs Garage,3500,The engine sensor may be faulty,2300
+Clutch & Cogs Garage,3500,A new head gasket may be needed,4100
+Clutch & Cogs Garage,3500,This is a normal situation,3400
+Clutch & Cogs Garage,3500,This is a normal situation,4900
+Clutch & Cogs Garage,3500,The engine sensor may be damaged,2200
+Clutch & Cogs Garage,3500,Matching problem between the brake pads and the front discs,3500
+Clutch & Cogs Garage,3500,Check for a vacuum leak or moisture in the distributor cap (distributor),2800
+Clutch & Cogs Garage,3500,Check the balance of the four wheels,3500
+Clutch & Cogs Garage,3500,Matching problem between the brake pads and the front discs,4200
+Clutch & Cogs Garage,3500,This is a normal situation. The anti lock system pulsates the brakes,2300
+Clutch & Cogs Garage,3500,Matching problem between the brake pads and the front discs,2600
