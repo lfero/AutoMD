@@ -63,7 +63,7 @@ export const Dropdowns = () => {
         <a hidden={openText} href='#' onClick={() => showOpenText(true)} className='dropdowns_or_freetext_link'>or click here to pick symptoms from dropdowns</a>
           <div hidden={openText}>
             <br/><br/>
-            <input className='free_text' type="text" name="name" />
+            <input className='free_text' id='free_text' type="text" name="name" />
           </div>
         <a hidden={!openText} href='#' onClick={() => showOpenText(false)} className='dropdowns_or_freetext_link'>or click here to insert free text</a>
       </div>
@@ -73,6 +73,7 @@ export const Dropdowns = () => {
   const getDropdowns = () => {
     return(
       <div>
+        <br/><br/>
         <div hidden={!openText}>
         <Dropdown onChange={(option) => updateData(option.value, 0)} className="dropdown_option"  options={Object.keys(data_json)} placeholder="select symptom.." />
         </div>
@@ -89,16 +90,17 @@ export const Dropdowns = () => {
 
   return (
     showResultComponent ?  
-    <GarageList showResults={showResultComponent} problem={problem}/> :
+    <GarageList showResults={showResultComponent} problem={problem} openText={!openText} freeText={document.getElementById("free_text").value}/> :
     <div>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <h2 className='welcome_text'>Get your initial car diagnosis before hitting the garage</h2>
-        <div className='select_symptom_text'>Please pick you car symptom in order to diagnose the problem</div>
+        <div hidden={openText} className='select_symptom_text'>Please type your car symptom in order to diagnose the problem</div>
+        <div hidden={!openText} className='select_symptom_text'>Please pick your car symptom in order to diagnose the problem</div>
         {getDropdownOrTextLink()}
         {getDropdowns()}
-        <div className='comment_text'>* Doctor Motor only gives you information about your car problem and does not replace any profissional car check or treatment </div>
-        <button onClick={() => setShowResultComponent(true)} className="diagnose_button">show results</button>
-        <button className="result_button">reset</button>
+        <div className='comment_text'>* Motor Doctor only gives you information about your car problem and does not replace any profissional car check or treatment </div>
+        <button onClick={() => setShowResultComponent(true)} className="diagnose_button">Show results</button>
+        <button className="result_button">Reset</button>
     </div>
 
   )

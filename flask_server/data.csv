@@ -1,4 +1,4 @@
-﻿No,symbtom a,symptom b,symptom c,problem
+﻿No,symptomA,symptomB,symptomC,problem
 1,High engine temperature,Hot weather,low coolant level warning light is on,Lack of coolant
 2,High engine temperature,Hot weather,no low coolant level warning light is on,The cooling system is clogged - it needs to be cleaned
 3,High engine temperature,After a long drive,The air conditioner is on most of the time,check the ventilation unit

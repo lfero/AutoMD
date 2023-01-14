@@ -1,4 +1,4 @@
-garage name,distance (meters),problem,price (shekels)
+garageName,distance,problem,price
 Grease Monkey Mechanics,1300,Lack of coolant,4500
 Grease Monkey Mechanics,1300,The cooling system is clogged - it needs to be cleaned,4600
 Grease Monkey Mechanics,1300,check the ventilation unit,4200

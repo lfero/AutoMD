@@ -17,24 +17,30 @@ def readCsv():
     with open(r'C:\Users\lfero\OneDrive - Intel Corporation\Desktop\autoMD_app\flask_server\data.csv') as csvf:
         csvReader = csv.DictReader(csvf)
         for row in csvReader:
-            key_symptom = row['symbtom a']
-            key_symptom_value = {row['symptom b'] : {
-                row['symptom c'] : row['problem']
+            key_symptom = row['symptomA']
+            key_symptom_value = {row['symptomB'] : {
+                row['symptomC'] : row['problem']
             }}
 
             if key_symptom not in json_data:
                 json_data[key_symptom] = {}
 
-            if row['symptom b'] not in json_data[key_symptom].keys():
+            if row['symptomB'] not in json_data[key_symptom].keys():
                 json_data[key_symptom] = key_symptom_value
             
             else:
-                json_data[key_symptom][row['symptom b']][row['symptom c']] = row['problem']
+                json_data[key_symptom][row['symptomB']][row['symptomC']] = row['problem']
 
         print("-------> json_data : ", json.dumps(json_data, indent=4))
 
     return json.dumps(json_data, indent=4)
-        
+
+@app.route('/getGaragesByProblem/<problem>')
+def getGaragesByProblem(problem):
+    garage_df = pd.read_csv(r'C:\Users\lfero\OneDrive - Intel Corporation\Desktop\autoMD_app\flask_server\garage_data.csv')
+    df_by_problem = garage_df[garage_df.problem == problem]
+    return df_by_problem.to_json(orient="records")
+
 @app.route("/getGaragesList")
 def getGaragesList(lam=0.5):
     '''
@@ -60,16 +66,16 @@ def getGaragesList(lam=0.5):
     rank_df = rank_df.sort_values("score")
     return rank_df
 
-@app.route("/getFreeText")
-def getFreeText(freeText):
+@app.route('/getFreeText/<free_text>')
+def getFreeText(free_text):
     nlp = spacy_sentence_bert.load_model('en_stsb_distilbert_base')
-    df = pd.read_csv("data.csv")
-    df["text"] = df["symbtom a"] +" "+ df["symptom b"] +" "+ df["symptom c"] +" "+ df["problem"]
+    df = pd.read_csv(r'C:\Users\lfero\OneDrive - Intel Corporation\Desktop\autoMD_app\flask_server\data.csv')
+    df["text"] = df["symptomA"] +" "+ df["symptomB"] +" "+ df["symptomC"] +" "+ df["problem"]
     df["vector"] = df["text"].apply(lambda x: nlp(x).vector)
-    free_text = "there is white smoke coming from my engine" #freeText
     free_vector = nlp(free_text).vector
     df["free_score"] = df["vector"].apply(lambda x: cosine_similarity(x.reshape(1, -1),free_vector.reshape(1, -1))[0][0])
-    return df.sort_values("free_score", ascending = False)
+    result = df.sort_values("free_score", ascending = False)
+    return result.to_json(orient="records")
 
 
 if __name__ == "__main__":
