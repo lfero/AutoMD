@@ -10,7 +10,6 @@ export const GarageList = (showResults) => {
   const [grageList, setGarageList] = useState([])
   const [problemsList, setProblemsList] = useState([])
 
-  console.log("-----------> showResults.freeText: ", showResults.freeText)
 
   useEffect(()=>{
 		setShowMainPage(false);
@@ -36,7 +35,6 @@ export const GarageList = (showResults) => {
         }
       )
     }
-    console.log("---------> problemsList: ", problemsList)
   })
 
 
@@ -65,7 +63,7 @@ export const GarageList = (showResults) => {
   
   const getDrpdownsTableResult = () => {
     return(
-      grageList.length == 0? 'Loading...' :
+      grageList.length == 0? <div className="loading">Loading...</div> :
       <div className="garage_list">
         <table>
           <tr>
@@ -74,12 +72,11 @@ export const GarageList = (showResults) => {
             <th>price</th>
           </tr>
           {grageList.map((val, key) => {
-            //console.log("------> maping val: ", val)
             return (
               <tr key={key}>
                 <td>{val.garageName}</td>
-                <td>{val.distance}</td>
-                <td>{val.price}</td>
+                <td>{val.distance} meters </td>
+                <td>{val.price} ILS</td>
               </tr>
             )
           })}
@@ -90,24 +87,22 @@ export const GarageList = (showResults) => {
 
   const getFreeTextTableResult = () => {
     return(
-      problemsList.length == 0? 'Loading...' :
+      problemsList.length == 0? <div className="loading">Loading...</div> :
       <div className="garage_list">
         <table>
           <tr>
-            <th>problem</th>
-            <th>propabilty</th>
             <th>symptomA</th>
             <th>symptomB</th>
             <th>symptomC</th>
+            <th>problem</th>
           </tr>
           {problemsList.map((val, key) => {
             return (
               <tr key={key}>
-                <td>{val.problem}</td>
-                <td>{val.free_score}</td>
                 <td>{val.symptomA}</td>
                 <td>{val.symptomB}</td>
                 <td>{val.symptomC}</td>
+                <td>{val.problem}</td>
               </tr>
             )
           })}
@@ -120,11 +115,22 @@ export const GarageList = (showResults) => {
     return(
       <div className="bacground_img">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <h2 className="problem">We think that your problem might be: </h2>
-        <div className="grages_text">Here are some good garages near you:</div>
+        <h2 className="problem">{"Your search: " + showResults.freeText }</h2>
+        <h2 className="problem">{"Your car's problem migh be the following: "}</h2>
         {getFreeTextTableResult()}  
       </div> 
     )
+  }
+
+  const sortData = (lambda) => {
+    fetch(`/getGaragesListByLambda/${showResults.problem}/${lambda/10}`).then(
+      res => res.json()
+    ).then(
+      data_json => {
+        setGarageList(data_json)
+      }
+    )
+    
   }
 
   const getDropdownsResult = () => {
@@ -133,6 +139,15 @@ export const GarageList = (showResults) => {
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <h2>{getProblem()}</h2>
         <div className="grages_text">Here are some good garages near you:</div>
+        <input 
+          type='range' 
+          min={0} 
+          max={10} 
+          onChange={(e) => sortData(e.target.value)}
+        />
+        <br/>
+        <span className="slider_closer">cheaper</span>
+        <span className="slider_cheaper">closer</span>
         {getDrpdownsTableResult()}  
         {getSlider()}
       </div> 
