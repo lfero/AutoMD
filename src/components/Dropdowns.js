@@ -2,6 +2,7 @@ import Dropdown from 'react-dropdown';
 import React, { useState, useEffect }from "react";
 import {GarageList} from "./GarageList"
 import "../css/Dropdowns.css";
+//import {useNavigate} from "react-router-dom"
 
 export const Dropdowns = () => {  
 
@@ -15,6 +16,8 @@ export const Dropdowns = () => {
   const [thirdDropdown, setThirdDropdown] = useState([])
   const [problem, setProblem] = useState()
   const [showResultComponent, setShowResultComponent] = useState()
+
+  //const navigate = useNavigate();
 
   useEffect(()=>{
 		setShowResultComponent(false);
@@ -63,7 +66,13 @@ export const Dropdowns = () => {
         <a hidden={openText} href='#' onClick={() => showOpenText(true)} className='dropdowns_or_freetext_link'>or click here to pick symptoms from dropdowns</a>
           <div hidden={openText}>
             <br/><br/>
-            <input className='free_text' id='free_text' type="text" name="name" />
+
+            <textarea 
+              className='free_text'
+              placeholder='Type your car symptoms here' 
+              id='free_text' 
+              name="name">
+            </textarea>
           </div>
         <a hidden={!openText} href='#' onClick={() => showOpenText(false)} className='dropdowns_or_freetext_link'>or click here to insert free text</a>
       </div>
@@ -88,6 +97,20 @@ export const Dropdowns = () => {
     )
   }
 
+  /*return (
+    <div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <h2 className='welcome_text'>Get your initial car diagnosis before hitting the garage</h2>
+        <div hidden={openText} className='select_symptom_text'>Please type your car symptom in order to diagnose the problem</div>
+        <div hidden={!openText} className='select_symptom_text'>Please pick your car symptom in order to diagnose the problem</div>
+        {getDropdownOrTextLink()}
+        {getDropdowns()}
+        <div className='comment_text'>* Motor Doctor only gives you information about your car problem and does not replace any profissional car check or treatment </div>
+        <button onClick={()=>navigate("/result")} className="diagnose_button">Show results</button>
+        <button className="result_button">Reset</button>
+    </div>
+  )*/
+
   return (
     showResultComponent ?  
     <GarageList showResults={showResultComponent} problem={problem} openText={!openText} freeText={document.getElementById("free_text").value}/> :
@@ -102,6 +125,5 @@ export const Dropdowns = () => {
         <button onClick={() => setShowResultComponent(true)} className="diagnose_button">Show results</button>
         <button className="result_button">Reset</button>
     </div>
-
   )
 }

@@ -23,14 +23,19 @@ def readCsv():
             }}
 
             if key_symptom not in json_data:
+                #print("11111111 new symptom A: ", key_symptom)
                 json_data[key_symptom] = {}
 
             if row['symptomB'] not in json_data[key_symptom].keys():
-                json_data[key_symptom] = key_symptom_value
+                #print("22222222 row['symptomB']: ", row['symptomB'] )
+                #print("22222222 not in json_data[key_symptom].keys(): ", json_data[key_symptom].keys())
+                #json_data[key_symptom] = key_symptom_value
+                json_data[key_symptom][row['symptomB']] = {}
             
             else:
                 json_data[key_symptom][row['symptomB']][row['symptomC']] = row['problem']
 
+        print("-------> json_data : ", json.dumps(json_data, indent=4))
 
     return json.dumps(json_data, indent=4)
 
@@ -44,8 +49,6 @@ def getGaragesByProblem(problem):
 def getGaragesListByLambda(problem, lam):
     lamValue = np.float16(lam)
     garage_df = pd.read_csv(r'C:\Users\lfero\OneDrive - Intel Corporation\Desktop\autoMD_app\flask_server\garage_data.csv')
-
-
     rank_df = garage_df[garage_df.problem == problem]
     sum_dist, sum_price = rank_df["distance"].sum(), rank_df["price"].sum()
     #rank_df

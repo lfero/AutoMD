@@ -1,4 +1,5 @@
 import React, { useState, useEffect }from "react";
+import {Dropdowns} from "./Dropdowns"
 import {Slider} from "antd"
 import "../css/GarageList.css";
 
@@ -6,9 +7,13 @@ import "../css/GarageList.css";
 
 export const GarageList = (showResults) => {  
 
+  console.log("=======> showResults is: ", showResults)
   const [showMainPage, setShowMainPage] = useState()
   const [grageList, setGarageList] = useState([])
   const [problemsList, setProblemsList] = useState([])
+  
+  const[problem, setProblem] = useState(showResults.problem)
+  const[openText, setOpenText] = useState(showResults.openText)
 
 
   useEffect(()=>{
@@ -17,8 +22,9 @@ export const GarageList = (showResults) => {
 
   //get data from csv
   useEffect(() => {
-    if(!showResults.openText && grageList.length === 0){
-      fetch(`/getGaragesByProblem/${showResults.problem}`).then(
+    if(!openText && grageList.length === 0){
+      //fetch(`/getGaragesByProblem/${showResults.problem}`).then(
+        fetch(`/getGaragesListByLambda/${problem}/${1}`).then(
         res => res.json()
       ).then(
         data_json => {
@@ -26,7 +32,7 @@ export const GarageList = (showResults) => {
         }
       )
     }
-    else if(showResults.openText && problemsList.length === 0){
+    else if(openText && problemsList.length === 0){
       fetch(`/getFreeText/${showResults.freeText}`).then(
         res => res.json()
       ).then(
@@ -40,24 +46,8 @@ export const GarageList = (showResults) => {
 
 
   const getProblem = () => {
-    return showResults.problem ? 
-    <div className="problem">{showResults.problem}</div> : ''
-  }
-
-  const getSlider = () => {
-    return(
-      <div>
-         <div style={{color:'white', marginLeft:'90px'}}>Modify your search by picking garage by location/cost</div>
-          <br/>
-          <div style={{maxWidth:'200px', marginLeft:'100px'}}>
-            <Slider min={0} max={1} defaultValue={0.5} style={{borderColor:'white'}}/>
-            <span style={{color:'white'}}>price</span>
-            <span style={{color:'white', marginLeft:'130px'}}>location</span>
-            <button style={{marginTop:'20px'}}>Refresh</button>
-          </div>
-      </div>
-    )
-
+    return problem ? 
+    <div className="problem">{problem}</div> : ''
   }
 
   
@@ -81,6 +71,7 @@ export const GarageList = (showResults) => {
             )
           })}
         </table>
+        <button onClick={() => setShowMainPage(true)} className="back_button">Back</button>
       </div>
     )
   }
@@ -102,12 +93,27 @@ export const GarageList = (showResults) => {
                 <td>{val.symptomA}</td>
                 <td>{val.symptomB}</td>
                 <td>{val.symptomC}</td>
-                <td>{val.problem}</td>
+                <td><a style={{color:'white'}} href='#' onClick={() => problemClicked(val.problem)}>{val.problem}</a></td>
               </tr>
             )
           })}
         </table>
+        <br/>
+        <button onClick={() => setShowMainPage(true)} className="back_button">Back</button>
       </div>
+    )
+  }
+
+  const problemClicked = (problemClicked) => {
+   setProblem(problemClicked)
+   setOpenText(false)
+   //TODO: fetch again with the new problem
+   fetch(`/getGaragesListByLambda/${problemClicked}/${1}`).then(
+    res => res.json()
+    ).then(
+      data_json => {
+        setGarageList(data_json)
+      }
     )
   }
 
@@ -115,15 +121,15 @@ export const GarageList = (showResults) => {
     return(
       <div className="bacground_img">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <h2 className="problem">{"Your search: " + showResults.freeText }</h2>
         <h2 className="problem">{"Your car's problem migh be the following: "}</h2>
+        <div className="more_details">{"(Click on the problem to get more details)"}</div>
         {getFreeTextTableResult()}  
       </div> 
     )
   }
 
   const sortData = (lambda) => {
-    fetch(`/getGaragesListByLambda/${showResults.problem}/${lambda/10}`).then(
+    fetch(`/getGaragesListByLambda/${problem}/${lambda/10}`).then(
       res => res.json()
     ).then(
       data_json => {
@@ -149,7 +155,6 @@ export const GarageList = (showResults) => {
         <span className="slider_closer">cheaper</span>
         <span className="slider_cheaper">closer</span>
         {getDrpdownsTableResult()}  
-        {getSlider()}
       </div> 
     )
 
@@ -157,15 +162,23 @@ export const GarageList = (showResults) => {
 
   const getResult = () => {
     return(
-      showResults.openText? 
+      openText? 
       <div>{getOpenTextResult()}</div> : <div>{getDropdownsResult()}</div>
     )
 
   }
 
+  const showDropdownsPage = () => {
+    console.log("----------> in showDropdownsPage")
+    return(
+      showMainPage? 
+      <Dropdowns/> : null
+    )
+  }
+
   return (
-    showResults ?
-      <div>{getResult()}</div> : null
+    showResults && !showMainPage ?
+      getResult() : showDropdownsPage()
   );
 }
 
