@@ -32,6 +32,7 @@ export const Dropdowns = () => {
       ).then(
         data_json => {
           setData_json(data_json)
+          console.log("------> csv is: ", data_json)
         }
       )
     }
@@ -42,12 +43,16 @@ export const Dropdowns = () => {
     if(jsonLevel == 0){
       setFirstValuePicked(valuePicked)
       setSecondDropdown(Object.keys(data_json[valuePicked]))
+      setSecondValuePicked("")
+      setThirdValuePicked("")
     } else{
       setThirdDropdown(Object.keys(data_json[firstValuePicked][valuePicked]))
       setSecondValuePicked(valuePicked)
       setThirdValuePicked("")
     }
   }
+
+
 
   //update problem when selecting 3 symptoms
   const updateProblem = (valuePicked) => {
@@ -84,13 +89,13 @@ export const Dropdowns = () => {
       <div>
         <br/><br/>
         <div hidden={!openText}>
-        <Dropdown onChange={(option) => updateData(option.value, 0)} className="dropdown_option"  options={Object.keys(data_json)} placeholder="select symptom.." />
+        <Dropdown onChange={(option) => updateData(option.value, 0)} value={firstValuePicked} className="dropdown_option"  options={Object.keys(data_json)} placeholder="select symptom.." />
         </div>
-        <div hidden={firstValuePicked.length === 0 }>
-        <Dropdown onChange={(option) => updateData(option.value, 1)} className="dropdown_option" options={secondDropdown} placeholder="select symptom.." />
+        <div hidden={!openText || firstValuePicked.length === 0 }>
+        <Dropdown onChange={(option) => updateData(option.value, 1)} value={secondValuePicked} className="dropdown_option" options={secondDropdown} placeholder="select symptom.." />
         </div>
-        <div hidden={secondValuePicked.length === 0}>
-        <Dropdown hidden={true} onChange={(option) => updateProblem(option.value)} className="dropdown_option" options={thirdDropdown} placeholder="select symptom.." />
+        <div hidden={!openText || secondValuePicked.length === 0}>
+        <Dropdown hidden={true} onChange={(option) => updateProblem(option.value)} value={thirdValuePicked} className="dropdown_option" options={thirdDropdown} placeholder="select symptom.." />
         </div>
       </div>
 

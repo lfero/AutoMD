@@ -23,13 +23,9 @@ def readCsv():
             }}
 
             if key_symptom not in json_data:
-                #print("11111111 new symptom A: ", key_symptom)
                 json_data[key_symptom] = {}
 
             if row['symptomB'] not in json_data[key_symptom].keys():
-                #print("22222222 row['symptomB']: ", row['symptomB'] )
-                #print("22222222 not in json_data[key_symptom].keys(): ", json_data[key_symptom].keys())
-                #json_data[key_symptom] = key_symptom_value
                 json_data[key_symptom][row['symptomB']] = {}
             
             else:
