@@ -1,6 +1,5 @@
 import React, { useState, useEffect }from "react";
 import {Dropdowns} from "./Dropdowns"
-import {Slider} from "antd"
 import "../css/GarageList.css";
 
 
@@ -23,8 +22,7 @@ export const GarageList = (showResults) => {
   //get data from csv
   useEffect(() => {
     if(!openText && grageList.length === 0){
-      //fetch(`/getGaragesByProblem/${showResults.problem}`).then(
-        fetch(`/getGaragesListByLambda/${problem}/${1}`).then(
+        fetch(`/api/getGaragesListByLambda/${problem}/${1}`).then(
         res => res.json()
       ).then(
         data_json => {
@@ -32,8 +30,8 @@ export const GarageList = (showResults) => {
         }
       )
     }
-    else if(openText && problemsList.length === 0){
-      fetch(`/getFreeText/${showResults.freeText}`).then(
+    else if(openText && problemsList.length === 0 && showResults.freeText.length != 0){
+      fetch(`/api/getFreeText/${showResults.freeText}`).then(
         res => res.json()
       ).then(
         data_json => {
@@ -77,6 +75,15 @@ export const GarageList = (showResults) => {
   }
 
   const getFreeTextTableResult = () => {
+    if(showResults.freeText.length === 0){
+      return(
+        <div className="garage_list">
+          <br/><br/>
+          <div className="empty_text">You entered empty text. please insert some text to diagnose your problem</div>
+          <button onClick={() => setShowMainPage(true)} className="back_button">Back</button>
+        </div>
+      )
+    }
     return(
       problemsList.length == 0? <div className="loading">Loading...</div> :
       <div className="garage_list">
@@ -108,7 +115,7 @@ export const GarageList = (showResults) => {
    setProblem(problemClicked)
    setOpenText(false)
    //TODO: fetch again with the new problem
-   fetch(`/getGaragesListByLambda/${problemClicked}/${1}`).then(
+   fetch(`/api/getGaragesListByLambda/${problemClicked}/${1}`).then(
     res => res.json()
     ).then(
       data_json => {
@@ -129,7 +136,7 @@ export const GarageList = (showResults) => {
   }
 
   const sortData = (lambda) => {
-    fetch(`/getGaragesListByLambda/${problem}/${lambda/10}`).then(
+    fetch(`/api/getGaragesListByLambda/${problem}/${lambda/10}`).then(
       res => res.json()
     ).then(
       data_json => {

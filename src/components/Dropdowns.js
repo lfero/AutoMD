@@ -27,7 +27,7 @@ export const Dropdowns = () => {
   //get data from csv
   useEffect(() => {
     if(data_json.length === 0){
-      fetch("/readCsv").then(
+      fetch("/api/readCsv").then(
         res => res.json()
       ).then(
         data_json => {
