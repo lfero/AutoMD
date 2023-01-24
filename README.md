@@ -10,16 +10,17 @@ The user can insert the car symptoms in a free text or pick them from cascading 
 ![image](https://user-images.githubusercontent.com/99175298/214261511-884c3542-7f10-4054-9266-f7e404988a16.png)
 
 # Cloning the project and running the application:
+prerequisite 
 In order to run the application you need to install:
 1. Node.js
 2. NPM
 3. Python38
 
-# 1. Install React packages
+1. Install React packages
 Open a terminal in the application root and install the react packages by simply running:
 npm install
 
-# 2. Activate the Flask server 
+2. Activate the Flask server 
 Open a terminal in the flask_server folder and create python virtual environment by simply running:
 python -m venv venv
 This will create a venv folder under the flask_server. you can activate this venv by simply running:
